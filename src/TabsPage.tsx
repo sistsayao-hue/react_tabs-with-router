@@ -5,9 +5,10 @@ import {
   TabPanels,
   TabPanel,
 } from '@mate-academy/react_tabs-js';
-import { Tab } from './types/Tab';
 
-const tabs: Tab[] = [
+import { Tab as TabType } from './types/Tab';
+
+const tabs: TabType[] = [
   {
     id: 'tab-1',
     title: 'Tab 1',
@@ -29,6 +30,22 @@ export const TabsPage = () => (
   <>
     <h1 className="title">Tabs page</h1>
 
-    <Tabs tabs={tabs} />
+    <Tabs>
+      <TabList>
+        {tabs.map(tab => (
+          <Tab key={tab.id}>
+            {tab.title}
+          </Tab>
+        ))}
+      </TabList>
+
+      <TabPanels>
+        {tabs.map(tab => (
+          <TabPanel key={tab.id}>
+            {tab.content}
+          </TabPanel>
+        ))}
+      </TabPanels>
+    </Tabs>
   </>
 );
