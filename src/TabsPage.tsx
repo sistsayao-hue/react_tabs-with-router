@@ -6,6 +6,8 @@ import {
   TabPanel,
 } from '@mate-academy/react_tabs-js';
 
+import { Link, useParams } from 'react-router-dom';
+
 import { Tab as TabType } from './types/Tab';
 
 const tabs: TabType[] = [
@@ -26,26 +28,44 @@ const tabs: TabType[] = [
   },
 ];
 
-export const TabsPage = () => (
-  <>
-    <h1 className="title">Tabs page</h1>
+export const TabsPage = () => {
+  const { tabId } = useParams();
 
-    <Tabs>
-      <TabList>
-        {tabs.map(tab => (
-          <Tab key={tab.id}>
-            {tab.title}
-          </Tab>
-        ))}
-      </TabList>
+  const selectedTab = tabs.findIndex(tab => tab.id === tabId);
 
-      <TabPanels>
-        {tabs.map(tab => (
-          <TabPanel key={tab.id}>
-            {tab.content}
-          </TabPanel>
-        ))}
-      </TabPanels>
-    </Tabs>
-  </>
-);
+  if (selectedTab === -1) {
+    return (
+      <>
+        <h1 className="title">Tabs page</h1>
+
+        <p>Please select a tab</p>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="title">Tabs page</h1>
+
+      <Tabs selected={selectedTab}>
+        <TabList>
+          {tabs.map(tab => (
+            <Tab key={tab.id}>
+              <Link to={`/tabs/${tab.id}`}>
+                {tab.title}
+              </Link>
+            </Tab>
+          ))}
+        </TabList>
+
+        <TabPanels>
+          {tabs.map(tab => (
+            <TabPanel key={tab.id}>
+              {tab.content}
+            </TabPanel>
+          ))}
+        </TabPanels>
+      </Tabs>
+    </>
+  );
+};
