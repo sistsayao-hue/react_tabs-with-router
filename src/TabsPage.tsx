@@ -6,6 +6,14 @@ import {
   TabPanel,
 } from '@mate-academy/react_tabs-js';
 
+
+
+
+
+
+
+
+
 import { Link, useParams } from 'react-router-dom';
 
 import { Tab as TabType } from './types/Tab';
