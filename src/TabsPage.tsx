@@ -1,4 +1,10 @@
-import { Tabs } from './Components/tab';
+import {
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from '@mate-academy/react_tabs-js';
 import { Tab } from './types/Tab';
 
 const tabs: Tab[] = [
